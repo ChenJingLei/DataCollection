@@ -17,7 +17,7 @@ namespace DataCollectionAPI.Models
             return userIdentity;
         }
 
-        public string WeiXinId { get; set; }
+        public string WeChatId { get; set; }
 
         public string Department { get; set; }
     }
@@ -27,11 +27,14 @@ namespace DataCollectionAPI.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
         
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

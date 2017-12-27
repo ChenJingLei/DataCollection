@@ -31,7 +31,7 @@ namespace DataCollectionAPI.Providers
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+            ApplicationUser user = await userManager.FindAsyncByWeChatId(context.UserName);//.FindAsync(context.UserName, context.Password);
 
             if (user == null)
             {

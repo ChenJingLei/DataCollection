@@ -7,12 +7,14 @@ namespace DataCollection.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.AspNetUsers", "Department", c => c.String());
+            AddColumn("dbo.AspNetUsers", "WeChatId", c => c.String());
+            DropColumn("dbo.AspNetUsers", "WeiXinId");
         }
         
         public override void Down()
         {
-            DropColumn("dbo.AspNetUsers", "Department");
+            AddColumn("dbo.AspNetUsers", "WeiXinId", c => c.String());
+            DropColumn("dbo.AspNetUsers", "WeChatId");
         }
     }
 }

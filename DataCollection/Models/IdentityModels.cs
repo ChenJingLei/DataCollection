@@ -19,7 +19,7 @@ namespace DataCollection.Models
         }
 
         [Display(Name = "微信标识")]
-        public string WeiXinId { get; set; }
+        public string WeChatId { get; set; }
 
         [Display(Name ="部门")]
         public string Department { get; set; }

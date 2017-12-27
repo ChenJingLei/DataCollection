@@ -1,10 +1,14 @@
 ﻿using System.Threading.Tasks;
+using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using DataCollectionAPI.Models;
 
+
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity;
 namespace DataCollectionAPI
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
@@ -42,9 +46,16 @@ namespace DataCollectionAPI
             return manager;
         }
 
-        public ApplicationUser FindByWeChatId(string wechatId)
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        public async Task<ApplicationUser> FindAsyncByWeChatId(string wechatId)
         {
-            return new ApplicationUser();
+            var applicationUser = await (from u in db.ApplicationUsers
+                                         where u.WeChatId == wechatId //&& u.PhoneNumber == ""
+                                         select u).FirstOrDefaultAsync() as ApplicationUser;
+            //db.ApplicationUsers.Where(u => u.WeChatId == wechatId //&& u.PhoneNumber == ""
+            //                                                ).Select(u => u).FirstAsync(u=>u.WeChatId == wechatId);
+            return applicationUser;
         }
 
 

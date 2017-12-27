@@ -318,34 +318,34 @@ namespace DataCollectionAPI.Controllers
             return logins;
         }
 
-        // POST: /Account/Login
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IHttpActionResult> LoginByWeChat(LoginByWeChatViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: /Account/Login
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public async Task<IHttpActionResult> LoginByWeChat(LoginByWeChatViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            //var result = await SignInManager.PasswordSignInAsync(model.Phone, model.Password, model.RememberMe, shouldLockout: false);
-            //switch (result)
-            //{
-            //    case SignInStatus.Success:
-            //        return RedirectToLocal(returnUrl);
-            //    case SignInStatus.LockedOut:
-            //        return View("Lockout");
-            //    case SignInStatus.RequiresVerification:
-            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-            //    case SignInStatus.Failure:
-            //    default:
-            //        ModelState.AddModelError("", "Invalid login attempt.");
-            //        return View(model);
-            //}
-            return Ok();
-        }
+        //    // This doesn't count login failures towards account lockout
+        //    // To enable password failures to trigger account lockout, change to shouldLockout: true
+        //    //var result = await SignInManager.PasswordSignInAsync(model.Phone, model.Password, model.RememberMe, shouldLockout: false);
+        //    //switch (result)
+        //    //{
+        //    //    case SignInStatus.Success:
+        //    //        return RedirectToLocal(returnUrl);
+        //    //    case SignInStatus.LockedOut:
+        //    //        return View("Lockout");
+        //    //    case SignInStatus.RequiresVerification:
+        //    //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+        //    //    case SignInStatus.Failure:
+        //    //    default:
+        //    //        ModelState.AddModelError("", "Invalid login attempt.");
+        //    //        return View(model);
+        //    //}
+        //    return Ok();
+        //}
 
         // POST api/Account/Register
         [AllowAnonymous]
@@ -357,7 +357,7 @@ namespace DataCollectionAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Username, Department = model.Department, PhoneNumber = model.PhoneNumber, Email = model.Email, WeiXinId = model.WeiXinId };
+            var user = new ApplicationUser() { UserName = model.Username, Department = model.Department, PhoneNumber = model.PhoneNumber, Email = model.Email, WeChatId = model.WeiXinId };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
