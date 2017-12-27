@@ -3,6 +3,24 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DataCollection.Models
 {
+    public class LoginViewModel
+    {
+        [Required]
+        [Display(Name = "手机号码")]
+        [EmailAddress]
+        public string Phone { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "密码")]
+        public string Password { get; set; }
+
+        [Display(Name = "记住密码")]
+        public bool RememberMe { get; set; }
+    }
+
+
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -46,22 +64,7 @@ namespace DataCollection.Models
         public string Email { get; set; }
     }
 
-    public class LoginViewModel
-    {
-        [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
-    }
-
+    
     public class RegisterViewModel
     {
         [Required]

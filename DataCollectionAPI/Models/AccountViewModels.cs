@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataCollectionAPI.Models
 {
+
     // Models returned by AccountController actions.
 
     public class ExternalLoginViewModel
@@ -39,5 +41,14 @@ namespace DataCollectionAPI.Models
         public string LoginProvider { get; set; }
 
         public string ProviderKey { get; set; }
+    }
+
+    public class LoginByWeChatViewModel
+    {
+
+        public string PhoneNumber { get; set; }
+
+        public string WeiXinId { get; set; }
+
     }
 }

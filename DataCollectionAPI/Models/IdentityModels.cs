@@ -18,6 +18,8 @@ namespace DataCollectionAPI.Models
         }
 
         public string WeiXinId { get; set; }
+
+        public string Department { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

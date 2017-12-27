@@ -97,7 +97,6 @@ C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollec
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.AI.Web.xml
-C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\obj\Debug\DataCollection.csprojResolveAssemblyReference.cache
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\obj\Debug\DataCollection.dll
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\obj\Debug\DataCollection.pdb
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.Owin.Security.WeChat.dll

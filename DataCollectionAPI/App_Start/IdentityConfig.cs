@@ -41,5 +41,12 @@ namespace DataCollectionAPI
             }
             return manager;
         }
+
+        public ApplicationUser FindByWeChatId(string wechatId)
+        {
+            return new ApplicationUser();
+        }
+
+
     }
 }
