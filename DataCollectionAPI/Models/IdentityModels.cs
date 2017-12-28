@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
 namespace DataCollectionAPI.Models
 {
@@ -19,20 +20,21 @@ namespace DataCollectionAPI.Models
             return userIdentity;
         }
 
-        public string AspNetWeChatAccountsId { get; set; }
+        public Guid AspNetWeChatAccountId { get; set; }
 
         public virtual AspNetWeChatAccount WeChatAccount { get; set; }
 
-        public int AspNetDepartmentsId { get; set; }
+        public int AspNetDepartmentId { get; set; }
 
         public virtual AspNetDepartment Department { get; set; }
     }
-    
+
     [Table("AspNetWeChatAccounts")]
     public class AspNetWeChatAccount
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
+        [Display(Name = "微信标识")]
         public string OpenId { get; set; }
         [StringLength(256)]
         public string NickName { get; set; }
@@ -49,7 +51,8 @@ namespace DataCollectionAPI.Models
     public class AspNetDepartment
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
+        public int Id { get; set; }
+        [Display(Name = "部门名称")]
         [StringLength(256)]
         public string Name { get; set; }
         [StringLength(256)]

@@ -16,6 +16,9 @@ using Microsoft.Owin.Security.OAuth;
 using DataCollectionAPI.Models;
 using DataCollectionAPI.Providers;
 using DataCollectionAPI.Results;
+using System.Linq;
+using System.Data.Entity;
+using System.Web.Http.Results;
 
 namespace DataCollectionAPI.Controllers
 {
@@ -127,7 +130,7 @@ namespace DataCollectionAPI.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -260,9 +263,9 @@ namespace DataCollectionAPI.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -359,8 +362,8 @@ namespace DataCollectionAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-
-            var wechat = new AspNetWeChatAccount()
+            //Test Data Info
+            var wxInfo = new AspNetWeChatAccount()
             {
                 OpenId = "testtesttesttetst",
                 NickName = "陈",
@@ -373,15 +376,42 @@ namespace DataCollectionAPI.Controllers
                 Lauguage = "Zh",
             };
 
-            wechat =  db.WeChatAccounts.Add(wechat);
+            var wechat = (from wx in db.WeChatAccounts
+                          where wx.OpenId == wxInfo.OpenId
+                          select wx) as AspNetWeChatAccount;
 
-            var user = new ApplicationUser() { UserName = model.Username, AspNetDepartmentsId = model.DepartmentId, PhoneNumber = model.PhoneNumber, Email = model.Email, WeChatAccount = wechat, AspNetWeChatAccountsId = wechat.Id };
-
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            if (!result.Succeeded)
+            if(wechat == null)
             {
-                return GetErrorResult(result);
+                wxInfo.Id = Guid.NewGuid();
+                wechat = db.WeChatAccounts.Add(wxInfo);
+            }
+            else
+            {
+                wxInfo.Id = wechat.Id;
+                db.Entry(wxInfo).State = EntityState.Modified;
+            }
+
+            try
+            {
+                await db.SaveChangesAsync();
+
+                var user = new ApplicationUser() { UserName = model.Username, AspNetDepartmentId = model.DepartmentId, PhoneNumber = model.PhoneNumber, Email = model.Email, AspNetWeChatAccountId = wechat.Id };
+
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+
+            }
+            catch(System.Data.Entity.Infrastructure.DbUpdateException e)
+            {
+                return NotFound();
+            }
+            catch (Exception e)
+            {
+                return new ExceptionResult(e, this);
             }
 
             return Ok();
@@ -415,7 +445,7 @@ namespace DataCollectionAPI.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }

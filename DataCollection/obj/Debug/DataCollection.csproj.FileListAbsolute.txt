@@ -51,6 +51,7 @@ C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollec
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.Owin.Security.WeChat.dll
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Newtonsoft.Json.dll
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Owin.dll
@@ -97,9 +98,8 @@ C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollec
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.AI.Web.xml
+C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\obj\Debug\DataCollection.csprojResolveAssemblyReference.cache
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\obj\Debug\DataCollection.dll
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\obj\Debug\DataCollection.pdb
-C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\bin\Microsoft.Owin.Security.WeChat.dll
-C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\obj\Debug\DataCollection.csprojResolveAssemblyReference.cache
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\obj\Debug\DataCollection.Migrations.Initial.resources
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollection\obj\Debug\DataCollection.csproj.GenerateResource.Cache

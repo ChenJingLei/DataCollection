@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System;
 
 namespace DataCollection.Models
 {
@@ -19,7 +20,7 @@ namespace DataCollection.Models
             return userIdentity;
         }
 
-        public string AspNetWeChatAccountId { get; set; }
+        public Guid AspNetWeChatAccountId { get; set; }
 
         public virtual AspNetWeChatAccount WeChatAccount { get; set; }
 
@@ -32,7 +33,7 @@ namespace DataCollection.Models
     public class AspNetWeChatAccount
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         [Display(Name = "微信标识")]
         public string OpenId { get; set; }
         [StringLength(256)]
@@ -78,6 +79,7 @@ namespace DataCollection.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
         public static ApplicationDbContext Create()

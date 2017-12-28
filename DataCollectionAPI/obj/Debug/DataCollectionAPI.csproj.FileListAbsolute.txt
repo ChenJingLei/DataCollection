@@ -102,3 +102,5 @@ C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollec
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollectionAPI\obj\Debug\DataCollectionAPI.csprojResolveAssemblyReference.cache
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollectionAPI\obj\Debug\DataCollectionAPI.dll
 C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollectionAPI\obj\Debug\DataCollectionAPI.pdb
+C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollectionAPI\obj\Debug\DataCollectionAPI.Migrations.Initial.resources
+C:\Users\cjl2020\documents\visual studio 2017\Projects\DataCollection\DataCollectionAPI\obj\Debug\DataCollectionAPI.csproj.GenerateResource.Cache
