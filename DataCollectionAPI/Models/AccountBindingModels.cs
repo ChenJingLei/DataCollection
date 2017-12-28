@@ -39,8 +39,7 @@ namespace DataCollectionAPI.Models
         public string Username { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string Department { get; set; }
+        public int DepartmentId { get; set; }
 
         [Required]
         [StringLength(11)]
@@ -62,7 +61,7 @@ namespace DataCollectionAPI.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
-        public string WeiXinId { get; set; }
+        public string WeChatAccountInfoEncryptedData { get; set; }
 
     }
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataCollection.Models
 {
@@ -18,11 +19,57 @@ namespace DataCollection.Models
             return userIdentity;
         }
 
-        [Display(Name = "微信标识")]
-        public string WeChatId { get; set; }
+        public string AspNetWeChatAccountId { get; set; }
 
-        [Display(Name ="部门")]
-        public string Department { get; set; }
+        public virtual AspNetWeChatAccount WeChatAccount { get; set; }
+
+        public int AspNetDepartmentId { get; set; }
+
+        public virtual AspNetDepartment Department { get; set; }
+    }
+
+    [Table("AspNetWeChatAccounts")]
+    public class AspNetWeChatAccount
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public string Id { get; set; }
+        [Display(Name = "微信标识")]
+        public string OpenId { get; set; }
+        [StringLength(256)]
+        public string NickName { get; set; }
+        public string AvatarUrl { get; set; }
+        public string Gender { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
+        public string Country { get; set; }
+        public string UnionId { get; set; }
+        public string Lauguage { get; set; }
+    }
+
+    [Table("AspNetDepartments")]
+    public class AspNetDepartment
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        [Display(Name = "部门名称")]
+        [StringLength(256)]
+        public string Name { get; set; }
+        [StringLength(256)]
+        public string C1 { get; set; }
+        [StringLength(256)]
+        public string C2 { get; set; }
+        [StringLength(256)]
+        public string C3 { get; set; }
+        [StringLength(256)]
+        public string C4 { get; set; }
+        [StringLength(256)]
+        public string C5 { get; set; }
+        [StringLength(256)]
+        public string C6 { get; set; }
+        [StringLength(256)]
+        public string C7 { get; set; }
+        [StringLength(256)]
+        public string C8 { get; set; }
 
     }
 

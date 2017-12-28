@@ -26,6 +26,8 @@ namespace DataCollectionAPI.Controllers
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
+        ApplicationDbContext db = new ApplicationDbContext();
+
         public AccountController()
         {
         }
@@ -357,7 +359,23 @@ namespace DataCollectionAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Username, Department = model.Department, PhoneNumber = model.PhoneNumber, Email = model.Email, WeChatId = model.WeiXinId };
+
+            var wechat = new AspNetWeChatAccount()
+            {
+                OpenId = "testtesttesttetst",
+                NickName = "陈",
+                AvatarUrl = "https://wx.qlogo.cn/mmopen/vi_32/4tBibDDRI8C5O0kvBMfE5bf35DvaLxxgIRRDBe8FLcP1at3vzOzIlCbDeTf3JehdkkcrvYzPd0tpkN1zia7CEQrw/0",
+                Gender = "1",
+                City = "Baoshan",
+                Province = "Shanghai",
+                Country = "China",
+                UnionId = "testtesttesttetst",
+                Lauguage = "Zh",
+            };
+
+            wechat =  db.WeChatAccounts.Add(wechat);
+
+            var user = new ApplicationUser() { UserName = model.Username, AspNetDepartmentsId = model.DepartmentId, PhoneNumber = model.PhoneNumber, Email = model.Email, WeChatAccount = wechat, AspNetWeChatAccountsId = wechat.Id };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

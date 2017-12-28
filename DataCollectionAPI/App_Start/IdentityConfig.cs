@@ -48,14 +48,15 @@ namespace DataCollectionAPI
 
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public async Task<ApplicationUser> FindAsyncByWeChatId(string wechatId)
+        public async Task<ApplicationUser> FindAsyncByPhoneNumberAndWeChatId(string phoneNumber,string wechatId)
         {
-            var applicationUser = await (from u in db.ApplicationUsers
-                                         where u.WeChatId == wechatId //&& u.PhoneNumber == ""
-                                         select u).FirstOrDefaultAsync() as ApplicationUser;
+            //var applicationUser = await (from u in db.ApplicationUsers
+            //                             where u.WeChatId == wechatId //&& u.PhoneNumber == ""
+            //                             select u).FirstOrDefaultAsync() as ApplicationUser;
             //db.ApplicationUsers.Where(u => u.WeChatId == wechatId //&& u.PhoneNumber == ""
             //                                                ).Select(u => u).FirstAsync(u=>u.WeChatId == wechatId);
-            return applicationUser;
+            
+            return null;
         }
 
     }
