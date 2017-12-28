@@ -1,5 +1,6 @@
-namespace DataCollectionAPI.Migrations
+﻿namespace DataCollectionAPI.Migrations
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,9 +27,18 @@ namespace DataCollectionAPI.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            context.WeChatAccounts.AddOrUpdate(
-                    wx => wx.Id,
-                    new Models.AspNetWeChatAccount { Id=Guid.NewGuid(),OpenId = "aaa" }  
+
+            var sysAdmin = new IdentityRole { Id = Guid.NewGuid().ToString(), Name = "系统管理员" };
+            var admin = new IdentityRole { Id = Guid.NewGuid().ToString(), Name = "普通管理员" };
+            var manager = new IdentityRole { Id = Guid.NewGuid().ToString(), Name = "客户经理" };
+            var apply = new IdentityRole { Id = Guid.NewGuid().ToString(), Name = "客户端待授权者" };
+
+            context.Roles.AddOrUpdate(
+                    r => r.Id,
+                    sysAdmin,
+                    admin,
+                    manager,
+                    apply
                 );
         }
     }
