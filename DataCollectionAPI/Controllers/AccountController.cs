@@ -366,21 +366,21 @@ namespace DataCollectionAPI.Controllers
             var wxInfo = new AspNetWeChatAccount()
             {
                 OpenId = "testtesttesttetst",
-                NickName = "陈",
+                NickName = "陈靖磊",
                 AvatarUrl = "https://wx.qlogo.cn/mmopen/vi_32/4tBibDDRI8C5O0kvBMfE5bf35DvaLxxgIRRDBe8FLcP1at3vzOzIlCbDeTf3JehdkkcrvYzPd0tpkN1zia7CEQrw/0",
                 Gender = "1",
                 City = "Baoshan",
                 Province = "Shanghai",
                 Country = "China",
-                UnionId = "testtesttesttetst",
+                UnionId = "testtesttesttetstbbbbbbbbaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbb",
                 Lauguage = "Zh",
             };
 
-            var wechat = (from wx in db.WeChatAccounts
+            var wechat = await (from wx in db.WeChatAccounts
                           where wx.OpenId == wxInfo.OpenId
-                          select wx) as AspNetWeChatAccount;
+                          select wx).FirstOrDefaultAsync();
 
-            if(wechat == null)
+            if (wechat == null)
             {
                 wxInfo.Id = Guid.NewGuid();
                 wechat = db.WeChatAccounts.Add(wxInfo);
@@ -388,7 +388,11 @@ namespace DataCollectionAPI.Controllers
             else
             {
                 wxInfo.Id = wechat.Id;
-                db.Entry(wxInfo).State = EntityState.Modified;
+                if (db.Entry(wechat).State != EntityState.Unchanged) db.Entry(wechat).State = EntityState.Unchanged;
+
+                db.Entry(wechat).CurrentValues.SetValues(wxInfo);
+
+                //db.Entry(wxInfo).State = EntityState.Modified;
             }
 
             try
