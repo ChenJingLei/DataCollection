@@ -31,6 +31,10 @@ namespace DataCollectionAPI.Providers
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
+
+            //Decrypt the infomation with WeChat
+            //...
+
             ApplicationUser user = await userManager.FindAsyncByPhoneNumberAndWeChatId(context.UserName, context.Password);//.FindAsync(context.UserName, context.Password);
 
             if (user == null)

@@ -362,6 +362,12 @@ namespace DataCollectionAPI.Controllers
                 return BadRequest(ModelState);
             }
 
+
+            // Get some information about Personal from EncryptedData within WeChat
+            //.........
+            //
+
+
             //Test Data Info
             var wxInfo = new AspNetWeChatAccount()
             {
@@ -392,7 +398,6 @@ namespace DataCollectionAPI.Controllers
 
                 db.Entry(wechat).CurrentValues.SetValues(wxInfo);
 
-                //db.Entry(wxInfo).State = EntityState.Modified;
             }
 
             try
@@ -409,7 +414,7 @@ namespace DataCollectionAPI.Controllers
                 }
 
             }
-            catch(System.Data.Entity.Infrastructure.DbUpdateException e)
+            catch(System.Data.Entity.Infrastructure.DbUpdateException)
             {
                 return NotFound();
             }

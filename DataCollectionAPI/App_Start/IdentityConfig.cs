@@ -50,13 +50,16 @@ namespace DataCollectionAPI
 
         public async Task<ApplicationUser> FindAsyncByPhoneNumberAndWeChatId(string phoneNumber,string wechatId)
         {
-            //var applicationUser = await (from u in db.ApplicationUsers
-            //                             where u.WeChatId == wechatId //&& u.PhoneNumber == ""
-            //                             select u).FirstOrDefaultAsync() as ApplicationUser;
-            //db.ApplicationUsers.Where(u => u.WeChatId == wechatId //&& u.PhoneNumber == ""
-            //                                                ).Select(u => u).FirstAsync(u=>u.WeChatId == wechatId);
-            
-            return null;
+            //phoneNumber&&wechatId->ApplicationUser
+            var applicationUser = await (from u in db.Users
+                                         join wx in db.WeChatAccounts on u.AspNetWeChatAccountId equals wx.Id
+                                         where u.PhoneNumber == phoneNumber && wx.OpenId == wechatId //wx.UnionId == wechatId
+                                         select u).FirstOrDefaultAsync();
+            if(applicationUser != null)
+            {
+                return await Task.FromResult<ApplicationUser>(applicationUser);
+            }
+            return await Task.FromResult<ApplicationUser>(null);
         }
 
     }
