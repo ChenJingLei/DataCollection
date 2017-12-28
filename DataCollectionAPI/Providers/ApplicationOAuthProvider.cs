@@ -43,15 +43,22 @@ namespace DataCollectionAPI.Providers
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
+            foreach(IdentityUserRole userRole in user.Roles)
+            {
+                if (userRole.RoleId==IdentityRoleOption.Manager)
+                {
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
-            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
-            context.Validated(ticket);
-            context.Request.Context.Authentication.SignIn(cookiesIdentity);
+                    ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+                        OAuthDefaults.AuthenticationType);
+                    ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
+                        CookieAuthenticationDefaults.AuthenticationType);
+
+                    AuthenticationProperties properties = CreateProperties(user.UserName);
+                    AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+                    context.Validated(ticket);
+                    context.Request.Context.Authentication.SignIn(cookiesIdentity);
+                }
+            }
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

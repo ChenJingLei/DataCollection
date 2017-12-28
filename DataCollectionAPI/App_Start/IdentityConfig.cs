@@ -63,4 +63,12 @@ namespace DataCollectionAPI
         }
 
     }
+
+    public struct IdentityRoleOption
+    {
+        public static readonly string SysAdmin      = "c04e2839-d9f7-42bc-a7e2-9c8bcee1040b";
+        public static readonly string Admin         = "1614e96a-ce16-45a8-99db-ffbcb1d53718";
+        public static readonly string Manager       = "b3000fd7-2ac5-409a-b582-d3c2d8457459";
+        public static readonly string Aapplicant    = "d803555e-7801-45ae-b219-ec1cd40dd170";
+    }
 }
