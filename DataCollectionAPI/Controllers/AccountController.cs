@@ -404,7 +404,7 @@ namespace DataCollectionAPI.Controllers
             {
                 await db.SaveChangesAsync();
 
-                var user = new ApplicationUser() { UserName = model.Username, AspNetDepartmentId = model.DepartmentId, PhoneNumber = model.PhoneNumber, Email = model.Email, AspNetWeChatAccountId = wechat.Id };
+                var user = new ApplicationUser() { UserName = model.PhoneNumber, Name = model.Name, AspNetDepartmentId = model.DepartmentId, PhoneNumber = model.PhoneNumber, Email = model.Email, AspNetWeChatAccountId = wechat.Id };
 
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

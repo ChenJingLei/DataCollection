@@ -36,7 +36,7 @@ namespace DataCollectionAPI.Models
     {
         [Required]
         [StringLength(50)]
-        public string Username { get; set; }
+        public string Name { get; set; }
 
         [Required]
         public int DepartmentId { get; set; }

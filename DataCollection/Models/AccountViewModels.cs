@@ -7,7 +7,7 @@ namespace DataCollection.Models
     {
         [Required]
         [Display(Name = "手机号码")]
-        [EmailAddress]
+        [Phone]
         public string Phone { get; set; }
 
         [Required]

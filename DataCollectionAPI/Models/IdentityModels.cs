@@ -20,6 +20,9 @@ namespace DataCollectionAPI.Models
             return userIdentity;
         }
 
+        [Display(Name = "姓名")]
+        public string Name { get; set; }
+
         public Guid AspNetWeChatAccountId { get; set; }
 
         public virtual AspNetWeChatAccount WeChatAccount { get; set; }
